@@ -11,6 +11,6 @@ app.use(cors())
 app.use(routes);
 
 app.listen(port, ()=>{
-    console.log(`Corre baixo na porta ${port} nengue`);
-    console.log(dataBase.isInitialized ? "Tô de boa nengue" : "Tô bem não oo")
+    console.log(`Funcionando na porta ${port}`);
+    console.log(dataBase.isInitialized ? "DB Inicializado" : "DB ainda não inicizalizado")
 })

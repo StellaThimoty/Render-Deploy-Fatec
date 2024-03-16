@@ -5,7 +5,7 @@ export default class TaskController {
     static async store(req: Request, res: Response){
         const {title, completed} = req.body;
         if(!title){
-            return res.status(400).json({erro: 'Título é obrigatório nengue'});
+            return res.status(400).json({erro: 'Título é obrigatório'});
         }
 
         const task = new Task();
@@ -22,24 +22,24 @@ export default class TaskController {
     static async show(req: Request, res: Response){
         const { id } = req.params
         if (!id || isNaN(Number(id))) {
-            return res.status(400).json({erro: 'id é obrigatório nengue'})
+            return res.status(400).json({erro: 'id é obrigatório'})
         }
         const task = await Task.findOneBy({id: Number(id)})
         // if (!task) {
-        //     return res.status(404).json({erro: 'Procura baixo nengue'})
+        //     return res.status(404).json({erro: 'Não encontrado'})
         // } 
 
         // return res.json(task)
-        return !task ? res.status(404).json({erro: 'Procura baixo negnue'}) : res.json(task)
+        return !task ? res.status(404).json({erro: 'Não encontrado'}) : res.json(task)
     }
     static async delete(req: Request, res: Response){
         const { id } = req.params
         if (!id || isNaN(Number(id))) {
-            return res.status(400).json({erro: 'id é obrigatório nengue'})
+            return res.status(400).json({erro: 'id é obrigatório'})
         }
         const task = await Task.findOneBy({id: Number(id)})
         if (!task) {
-            return res.status(404).json({erro: 'Procura baixo nengue'})
+            return res.status(404).json({erro: 'Não encontrado'})
         } 
 
         task.remove()
@@ -51,11 +51,11 @@ export default class TaskController {
 
 
         if (!id || isNaN(Number(id))) {
-            return res.status(400).json({erro: 'id é obrigatório nengue'})
+            return res.status(400).json({erro: 'id é obrigatório'})
         }
         const task = await Task.findOneBy({id: Number(id)})
         if (!task) {
-            return res.status(404).json({erro: 'Procura baixo nengue'})
+            return res.status(404).json({erro: 'Não encontrado'})
         } 
 
         task.title = title

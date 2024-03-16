@@ -13,10 +13,10 @@ const dataBase = new DataSource({
 
 dataBase.initialize()
 .then(()=>{
-    console.log(`Banco de dados inicializado nengue`);
+    console.log(`Banco de dados inicializado`);
 })
 .catch((err)=>{
-    console.log(`Deu ruim aí nengue, tás maluco é? ${err}`);
+    console.log(`Aconteceu um erro: ${err}`);
 });
 
 export default dataBase;
