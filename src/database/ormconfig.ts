@@ -2,7 +2,7 @@ import { join } from "path";
 import { DataSource } from "typeorm";
 
 const dataBase = new DataSource({
-    type: 'sqlite',
+    type: 'better-sqlite3',
     database: process.env.DATABASE   || './src/database/db.sqlite',
     logging: true,
     synchronize: true,
