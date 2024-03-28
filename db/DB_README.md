@@ -1,0 +1,1 @@
+# This folder exists to ensure the db is ignored and stored locally
