@@ -15,7 +15,6 @@ export default class ProfileController {
         if(age<=18) return res.status(400).json({erro: 'Idade tem que ser maior ou igual que 18'})
         if(!gender) return res.status(400).json({erro: 'Gênero é obrigatório'})
         // if(!<Gender>gender) return res.status(400).json({erro: 'Insira um gênero válido'})
-        if(gender !== "M" || "F" || "O" || "N") return res.status(400).json({erro: 'Insira um gênero válido'})
         const profile = new Profile()
         profile.userId = Number(user.id)
         profile.age = age ?? 18
