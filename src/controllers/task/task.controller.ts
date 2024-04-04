@@ -15,7 +15,10 @@ export default class TaskController {
         task.userId = Number(userId)
         await task.save()
 
-        return res.status(201).json(task)
+        return res.status(201).json({
+            title: task.title,
+            completed: task.completed
+        })
     }
     static async index(req: Request, res: Response){
         const { userId } = req.headers
@@ -23,8 +26,8 @@ export default class TaskController {
         if(!userId) return res.status(401).json({ erro: 'Usuário não autenticado'})
 
         const tasks = await Task.find({where: { userId: Number(userId)}})
-
-        return res.status(200).json(tasks)
+        const result = tasks.map(({title, completed}) => ({title, completed}))
+        return res.status(200).json(result)
     }
     static async show(req: Request, res: Response){
         const { id } = req.params
@@ -41,7 +44,10 @@ export default class TaskController {
         // } 
 
         // return res.json(task)
-        return !task ? res.status(404).json({erro: 'Não encontrado'}) : res.json(task)
+        return !task ? res.status(404).json({erro: 'Não encontrado'}) : res.status(200).json({
+            title: task.title,
+            completed: task.completed
+        })
     }
     static async delete(req: Request, res: Response){
         const { id } = req.params
@@ -83,7 +89,7 @@ export default class TaskController {
         task.completed = (completed === undefined) ? task.completed : completed
         await task.save()
 
-        return res.json(task)
+        return res.json({title: task.title, completed: task.completed})
 
     }
 }

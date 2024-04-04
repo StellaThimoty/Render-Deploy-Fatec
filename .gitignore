@@ -11,7 +11,7 @@ dist
 node_modules
 bower_components
 
-
+.env
 *.vscode
 
 psd

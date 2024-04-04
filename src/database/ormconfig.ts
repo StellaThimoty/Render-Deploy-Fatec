@@ -1,9 +1,11 @@
 import { join } from "path";
 import { DataSource } from "typeorm";
+import dotenv from 'dotenv';
+dotenv.config()
 
 const dataBase = new DataSource({
     type: 'better-sqlite3',
-    database: process.env.DATABASE   || './db/db.sql',
+    database: process.env.DATABASE || './db/datab.sql',
     logging: true,
     synchronize: true,
     entities: [

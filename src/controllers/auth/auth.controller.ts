@@ -1,4 +1,5 @@
 import User from "../../models/user.entity";
+import Profile from "../../models/profile.entity";
 import { Request, Response } from "express"
 import bcrypt from 'bcrypt'
 import Token from '../../models/token.entity';
@@ -10,11 +11,17 @@ export default class AuthController{
         if (!email) {return res.status(400).json({erro: "Email obrigatório"})}
         if (!password) {return res.status(400).json({erro: "Password obrigatório"})}
         
+
         const user = new User()
         user.name = name
         user.email = email
         user.password = bcrypt.hashSync(password,10)
         await user.save()
+
+        const profile = new Profile()
+        profile.userId = user.id
+        profile.user = user
+        await profile.save()
 
         return res.json({
             id: user.id,
