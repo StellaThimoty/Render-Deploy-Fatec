@@ -11,7 +11,9 @@ export default class AuthController{
         if (!email) {return res.status(400).json({erro: "Email obrigatório"})}
         if (!password) {return res.status(400).json({erro: "Password obrigatório"})}
         
-
+        const emailChk = await User.findOneBy({email})
+        if(emailChk) {return res.status(400).json({erro: "Email já cadastrado"})}
+        
         const user = new User()
         user.name = name
         user.email = email
